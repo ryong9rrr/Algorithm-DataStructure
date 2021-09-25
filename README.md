@@ -16,7 +16,7 @@
   - <a href="#sort-selection">선택 정렬</a>
   - <a href="#sort-bubble">버블 정렬</a>
   - <a href="#sort-insertion">삽입 정렬</a>
-  - 퀵 정렬
+  - <a href="#sort-quick">퀵 정렬</a>
   - 병합 정렬
   - 힙 정렬
   - 계수 정렬
@@ -184,3 +184,140 @@ int main(void){
 <strong>Big O Notation : N^2 이지만...</strong>
 
 마찬가지로 N^2 의 시간복잡도를 가지지만 데이터가 "거의 정렬된" 상태에서 삽입정렬은 뛰어난 성능을 보인다.
+
+---
+
+<h2 id="sort-bubble">버블 정렬</h2>
+
+> 바로 옆에 있는 숫자를 비교하고 교환하자.
+
+`✔1 ✔10 5 8 7 6 4 3 2 9` : 1과 10을 비교하고 1이 더 작으므로 그냥 둔다.
+
+`1 ✔10 ✔5 8 7 6 4 3 2 9` : 10과 5를 비교하고, 10이 더 크므로 교환한다. 👉 `1 ✔5 ✔10 8 7 6 4 3 2 9`
+
+`1 5 ✔10 ✔8 7 6 4 3 2 9` : 10과 8을 비교하고, 10이 더 크므로 교환한다. 👉 `1 5 ✔8 ✔10 7 6 4 3 2 9` ...
+
+`1 5 8 7 6 4 3 2 9 ✔10` : 따라서 마지막에는 가장 큰 숫자 10이 맨 끝에 위치하게 된다.
+
+```c++
+#include <stdio.h>
+
+int main(void){
+
+	int i, j, temp;
+
+	int array[10] = {1, 10, 5, 8, 7, 6, 4, 3, 2, 9};
+
+	for(i=0; i<10; i++){
+		for(j=0; j<9-i; j++){
+			if(array[j] > array[j+1]){
+				temp = array[j+1];
+				array[j+1] = array[j];
+				array[j] = temp;
+			}
+		}
+	}
+
+	for(i=0; i<10; i++){
+		printf("%d ", array[i]);
+	}
+
+	return 0;
+}
+```
+
+<strong>Big O Notation : N^2 이지만...</strong>
+
+선택정렬과 마찬가지로 N^2의 시간복잡도를 가지지만 실제로 더 수행시간이 느리고 비효율적인 알고리즘이다.
+👉 옆의 숫자를 비교해서 자리를 바꿔주는 연산을 계속해서 수행하기 때문.
+
+---
+
+<h2 id="sort-quick">퀵 정렬</h2>
+
+> 두 부분으로 나눈다(분할과 정복 + 재귀)
+
+(1) 첫 번째 숫자를 피벗으로 설정한다.
+
+(2) 앞에서부터 피벗보다 큰 숫자를 찾는다, 뒤에서 부터 피벗보다 작은 숫자를 찾는다.
+
+(3-1) 엇갈리지 않는다면 두 숫자를 swap하고 다시 2번을 수행한다.
+
+(3-2) 엇갈린다면 피벗과 작은 숫자를 swap하고 피벗을 기준으로 분할한다.
+
+`3 8 6 2 10 5 1 4 7 9`
+
+`(3) 8 6 2 10 5 1 4 7 9` : (1)
+
+`(3) 👉8 6 2 10 5 1👈 4 7 9` : (2) 엇갈리지 않음
+
+`(3) ✔1 6 2 10 5 ✔8 4 7 9` : (3-1)
+
+`(3) 1 👉6 2👈 10 5 8 4 7 9` : (2) 엇갈리지 않음
+
+`(3) 1 ✔2 ✔6 10 5 8 4 7 9` : (3-1)
+
+`(3) 1 2👈 👉6 10 5 8 4 7 9` : (2) 엇갈림
+
+`✔2 1 ✔(3) 6 10 5 8 4 7 9` : (3-2)
+
+`(2) 1 /--3--/ (6) 10 5 8 4 7 9` : (1) 3을 기준으로 분할
+
+```c++
+#include <stdio.h>
+
+int number = 10;
+int data[] = {3, 8, 6, 2, 10, 5, 1, 4, 7, 9};
+
+//start : 시작 index
+//end : 끝 index
+void quickSort(int* data, int start, int end){
+	//원소가 1개인 경우
+	if(start >= end){
+		return;
+	}
+
+	int pivot, i, j, temp;
+
+	pivot = start;
+	i = start + 1;
+	j = end;
+
+	//엇갈릴 때까지
+	while(i <= j){
+		while(i <= end && data[i] <= data[pivot]){
+			i++;
+		}
+		while(j > start && data[j] >= data[pivot] ){
+			j--;
+		}
+		//엇갈리지 않으면
+		if(i < j){
+			temp = data[i];
+			data[i] = data[j];
+			data[j] = temp;
+		} else {
+			temp = data[j];
+			data[j] = data[pivot];
+			data[pivot] = temp;
+		}
+	}
+
+	quickSort(data, start, j-1);
+	quickSort(data, j+1, end);
+}
+
+int main(void){
+	quickSort(data, 0, number-1);
+
+	for(int i=0; i<number; i++){
+		printf("%d ", data[i]);
+	}
+
+	return 0;
+}
+```
+
+<strong>Big O Notation : N \* log(N)</strong>
+
+계속해서 절반으로 쪼개기 때문에 "일반적인 경우" 효율적인 알고리즘이지만, 최악의 경우, 예를 들어 데이터가 "거의 정렬된 상태"라면 N\*N 의 시간복잡도를 보여준다.("거의 정렬된 상태"에서는 삽입정렬이 더 뛰어날 수 있다.)
