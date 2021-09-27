@@ -4,7 +4,7 @@
 - <a href="#sort-bubble">버블 정렬</a>
 - <a href="#sort-insertion">삽입 정렬</a>
 - <a href="#sort-quick">퀵 정렬</a>
-- 병합 정렬
+- <a href="#sort-merge"> 병합 정렬</a>
 - 힙 정렬
 - 계수 정렬
 
@@ -204,7 +204,7 @@ int main(void){
 
 <h2 id="sort-quick">퀵 정렬</h2>
 
-> 두 부분으로 나눈다(분할과 정복 + 재귀)
+> 피벗을 기준으로 두 부분으로 나눈다(분할과 정복 + 재귀)
 
 (1) 첫 번째 숫자를 피벗으로 설정한다.
 
@@ -290,3 +290,92 @@ int main(void){
 <strong>Big O Notation : N \* log(N)</strong>
 
 계속해서 절반으로 쪼개기 때문에 "일반적인 경우" 효율적인 알고리즘이지만, 최악의 경우, 예를 들어 데이터가 "거의 정렬된 상태"라면 N\*N 의 시간복잡도를 보여준다.("거의 정렬된 상태"에서는 삽입정렬이 더 뛰어날 수 있다.)
+
+---
+
+<h2 id="sort-merge">병합 정렬</h2>
+
+> "일단" 반으로 나누고 나중에 합치자 (분할과 정복 + 재귀)
+
+`7 6 5 8 3 5 9 1`
+
+👉 분할, 일단 계속해서 반으로 나눈다.
+
+`7 6 5 8 / 3 5 9 1`
+
+`7 6 / 5 8 / 3 5 / 9 1`
+
+`7 / 6 / 5 / 8 / 3 / 5 / 9 / 1` 👉 더 이상 나눌 수 없음
+
+👉 병합
+
+`6 7 / 5 8 / 3 5 / 1 9`
+
+`5 6 7 8 / 1 3 5 9`
+
+`1 3 5 5 6 7 8 9`
+
+```c++
+#include <stdio.h>
+
+// 배열의 길이
+int number = 8;
+// 정렬배열은 반드시 전역변수로 선언
+int sorted[8];
+
+void merge(int a[], int m, int middle, int n){
+
+	//index
+	int i = m;
+	int j = middle + 1;
+	int k = m;
+
+	while(i <= middle && j <= n){
+		if(a[i] <= a[j]){
+			sorted[k] = a[i];
+			i++;
+		} else {
+			sorted[k] = a[j];
+			j++;
+		}
+		k++;
+	}
+	if(i > middle){
+		for(int t=j; t<=n; t++){
+			sorted[k] = a[t];
+			k++;
+		}
+	} else{
+		for(int t=i; t<=middle; t++){
+			sorted[k] = a[t];
+			k++;
+		}
+	}
+	for(int t=m; t<=n; t++){
+		a[t] = sorted[t];
+		printf("%d ", a[t]);
+	}
+	printf("\n");
+}
+
+void mergeSort(int a[], int m, int n){
+	if(m < n){
+		int middle = (m + n) / 2;
+		mergeSort(a, m, middle);
+		mergeSort(a, middle+1, n);
+		merge(a, m, middle, n);
+	}
+}
+
+int main(void){
+	int array[number] = {7,6,5,8,3,5,9,1};
+	mergeSort(array, 0, number-1);
+	for(int i=0; i<number; i++){
+		printf("%d ", array[i]);
+	}
+}
+```
+
+<strong>Big O Notation : N \* log(N)</strong>
+
+퀵 정렬의 경우 최악에는 N*N의 시간복잡도를 가질 수 있지만 병합정렬은 무조건 반으로 쪼갠 후 연산을 수행하기 때문에 N * log(N)의 시간복잡도를 보장할 수 있다. 하지만 기존의 데이터를 담을 추가적인 메모리 공간을 필요로 하기 때문에 메모리의 낭비가 있을 수 있다.
