@@ -5,7 +5,7 @@
 - <a href="#sort-insertion">삽입 정렬</a>
 - <a href="#sort-quick">퀵 정렬</a>
 - <a href="#sort-merge"> 병합 정렬</a>
-- 힙 정렬
+- <a href="#sort-heap">힙 정렬</a>
 - 계수 정렬
 
 ---
@@ -379,3 +379,82 @@ int main(void){
 <strong>Big O Notation : N \* log(N)</strong>
 
 퀵 정렬의 경우 최악에는 N*N의 시간복잡도를 가질 수 있지만 병합정렬은 무조건 반으로 쪼갠 후 연산을 수행하기 때문에 N * log(N)의 시간복잡도를 보장할 수 있다. 하지만 기존의 데이터를 담을 추가적인 메모리 공간을 필요로 하기 때문에 메모리의 낭비가 있을 수 있다.
+
+---
+
+<h2 id="sort-heap">힙 정렬</h2>
+
+> [자료구조 힙(heap)]()을 이용해 데이터를 정렬한다.
+
+### 힙 정렬
+
+목적에 맞게 힙을 구현(최소 힙 or 최대 힙)하고 정렬한다.
+
+> 최대 힙을 오름차순으로 정렬하기
+
+<img src="img/heap_sort.jpg" />
+
+...와 같이 계속해서 `root`값을 맨 뒤로 보낸 뒤 나머지 값들에 대해 `heapify`를 수행한다.
+
+```c++
+#include <stdio.h>
+
+int number = 9;
+int heap[9] = {7, 6, 5, 8, 3, 5, 9, 1, 6};
+
+int main(void){
+	// 초기 heapify
+	for(int i=1; i<number; i++){
+		int c = i;
+		do {
+			int root = (c - 1) / 2;
+			if(heap[root] < heap[c]){
+				int temp = heap[root];
+				heap[root] = heap[c];
+				heap[c] = temp;
+			}
+			c = root;
+		}while(c != 0);
+	}
+
+	for(int i=0; i<number; i++){
+		printf("%d ", heap[i]);
+	}
+
+	printf("\n");
+
+	// heapify 된 배열을 가지고 정렬 수행
+	for(int i = number - 1; i >= 0; i--){
+		// swap
+		int temp = heap[0];
+		heap[0] = heap[i];
+		heap[i] = temp;
+		int root = 0;
+		int c;
+
+		//다시 heapify
+		do{
+			c = root * 2 + 1;
+			if(c < i-1 && heap[c] < heap[c+1]){
+				c++;
+			}
+			if(c < i && heap[root] < heap[c]){
+				temp = heap[root];
+				heap[root] = heap[c];
+				heap[c] = temp;
+			}
+			root = c;
+		}while (c < i);
+	}
+
+	for(int i=0; i<number; i++){
+		printf("%d ", heap[i]);
+	}
+}
+// 9 7 8 6 3 5 5 1 6
+// 1 3 5 5 6 6 7 8 9
+```
+
+<strong>Big O Notation : O(N \* log(N)) </strong>
+
+배열을 힙 구조로 만드는 시간복잡도 + 힙 정렬을 하는 시간복잡도 = N _ log(N) + N _ log(N) = N \* log(N)
