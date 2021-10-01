@@ -6,7 +6,7 @@
 - <a href="#sort-quick">퀵 정렬</a>
 - <a href="#sort-merge"> 병합 정렬</a>
 - <a href="#sort-heap">힙 정렬</a>
-- 계수 정렬
+- <a href="#sort-counting">계수 정렬</a>
 
 ---
 
@@ -458,3 +458,48 @@ int main(void){
 <strong>Big O Notation : O(N \* log(N)) </strong>
 
 배열을 힙 구조로 만드는 시간복잡도 + 힙 정렬을 하는 시간복잡도 = N _ log(N) + N _ log(N) = N \* log(N)
+
+---
+
+<h2 id="sort-counting">계수 정렬</h2>
+
+> 수의 범위가 특정한 경우 갯수를 센다.
+
+- 일반적인 경우보다는 특정한 경우에서 사용할 수 있는 매우 빠른 정렬방법
+
+- 새로운 배열을 만들어두고 "마치 정렬된 것 처럼" 구현
+
+```c++
+# include <stdio.h>
+
+int main(void){
+	int temp;
+	int count[6];
+	int array[30] = {1, 3, 2, 4, 3, 2, 5, 3, 1, 2,
+					 3, 4, 4, 3, 5, 1, 2, 3, 5, 2,
+					 3, 1, 4, 3, 5, 1, 2, 1, 1, 1};
+	// counting array init
+	for(int i=1; i<=5; i++){
+		count[i] = 0;
+	}
+
+	// counting
+	for(int i=0; i<30; i++){
+		count[array[i]]++;
+	}
+
+	//result
+	for(int i=1; i<=5; i++){
+		if(count[i] != 0){
+			for(int j=0; j<count[i]; j++){
+				printf("%d", i);
+			}
+		}
+	}
+	// 111111112222223333333344445555
+}
+```
+
+<strong>Big O Notation : log(N) </strong>
+
+빠르지만 "범위"에 따른 제약 등 제약사항이 많은 방법.
