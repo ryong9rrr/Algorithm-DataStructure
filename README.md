@@ -9,7 +9,7 @@
 
 ## 알고리즘
 
-- <a href="https://github.com/ryong9rrr/algorithm-note/tree/master/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EC%A0%95%EB%A0%AC">정렬</a>
+- <a href="https://github.com/ryong9rrr/algorithm-basic-c/tree/master/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EC%A0%95%EB%A0%AC">정렬</a>
   - 선택 정렬
   - 버블 정렬
   - 삽입 정렬

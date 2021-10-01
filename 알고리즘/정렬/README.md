@@ -384,7 +384,7 @@ int main(void){
 
 <h2 id="sort-heap">힙 정렬</h2>
 
-> [힙(heap)](https://github.com/ryong9rrr/algorithm-note/tree/master/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/%ED%9E%99)을 이용해 데이터를 정렬한다.
+> [힙(heap)](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/%ED%9E%99)을 이용해 데이터를 정렬한다.
 
 ### 힙 정렬
 
