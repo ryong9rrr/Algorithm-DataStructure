@@ -3,7 +3,7 @@
 int array[1001];
 
 int main(void){
-	
+	// selection sort
 	int number, i, j, index, min, temp;
 	
 	scanf("%d", &number);

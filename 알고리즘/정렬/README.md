@@ -392,7 +392,7 @@ int main(void){
 
 > 최대 힙을 오름차순으로 정렬하기
 
-<img src="img/heap_sort.jpg" />
+<img width="50%" src="img/heap_sort.jpg" />
 
 ...와 같이 계속해서 `root`값을 맨 뒤로 보낸 뒤 나머지 값들에 대해 `heapify`를 수행한다.
 
