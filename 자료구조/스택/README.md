@@ -2,7 +2,7 @@
 
 LIFO(Last In First Out) 정책에 기반한 배열 형태의 자료구조
 
-<img width="50%" src="./stack.jpg" />
+<img width="30%" src="./stack.jpg" />
 
 ---
 
@@ -35,7 +35,7 @@ returned 4
 
 ---
 
-## C (C++ STL)
+# C (C++ STL)
 
 ```c
 #include <iostream>
@@ -64,7 +64,7 @@ int main(void){
 
 ---
 
-## Python
+# Python
 
 ## append(), pop()
 

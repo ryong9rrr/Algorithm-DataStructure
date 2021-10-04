@@ -30,9 +30,9 @@
 
 `7 6 5 8 3 5 9 1 6` 을 최대 "최대 힙"으로 구현
 
-<img width="50%" src="img/heapify_1.jpg" />
-<img width="50%" src="img/heapify_2.jpg" />
-<img width="50%" src="img/heapify_3.jpg" />
+<img width="30%" src="img/heapify_1.jpg" />
+<img width="30%" src="img/heapify_2.jpg" />
+<img width="30%" src="img/heapify_3.jpg" />
 
 O(N)의 시간복잡도
 

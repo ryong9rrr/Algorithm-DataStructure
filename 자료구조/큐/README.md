@@ -2,7 +2,7 @@
 
 기본적으로 FIFO(First In First Out) 정책에 기반한 배열 형태의 자료구조
 
-<img width="50%" src="./queue.jpg" />
+<img width="30%" src="./queue.jpg" />
 
 ---
 

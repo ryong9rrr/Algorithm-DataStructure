@@ -9,7 +9,8 @@
 
 ## 알고리즘
 
-- <a href="https://github.com/ryong9rrr/algorithm-basic-c/tree/master/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EC%A0%95%EB%A0%AC">정렬</a>
+- 정렬
+
   - 선택 정렬
   - 버블 정렬
   - 삽입 정렬
@@ -18,11 +19,16 @@
   - 힙 정렬
   - 계수 정렬
 
+- DFS(깊이우선탐색), BFS(너비우선탐색)
+
+---
+
 ## 자료구조
 
 - 힙
 - 스택
 - 큐
+- 그래프
 
 ---
 
