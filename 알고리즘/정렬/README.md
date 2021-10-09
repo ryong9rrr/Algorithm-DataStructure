@@ -16,7 +16,7 @@
 
 ---
 
-<h2 id="sort-selection">선택 정렬</h2>
+<h1 id="sort-selection">선택 정렬</h1>
 
 > "가장 작은 것을 맨 앞으로 보내면 어떨까?"
 
@@ -27,6 +27,8 @@
 `1 2 ✔3 8 7 6 4 ✔5 10 9` : 마찬가지로 반복...
 
 `1 2 3 ✔4 7 6 ✔8 5 10 9` . . .
+
+## C
 
 ```c++
 #include <stdio.h>
@@ -57,6 +59,25 @@ int main(void){
 }
 ```
 
+## python
+
+```python
+n = 10
+numbers = [1, 10, 5, 8, 7, 6, 4, 3, 2, 9]
+
+for i in range(n):
+    #once, set front number is the min number.
+    min_index = i
+    #search next number
+    for j in range(i+1, n):
+        if numbers[min_index] > numbers[j]:
+            min_index = j
+    numbers[i], numbers[min_index] = numbers[min_index], numbers[i]
+
+print(numbers)
+# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```
+
 <strong>Big O Notation : N^2</strong>
 
 선택정렬의 경우 배열의 길이 만큼 계속해서 반복문을 수행한다.
@@ -67,7 +88,7 @@ int main(void){
 
 ---
 
-<h2 id="sort-bubble">버블 정렬</h2>
+<h1 id="sort-bubble">버블 정렬</h1>
 
 > 바로 옆에 있는 숫자를 비교하고 교환하자.
 
@@ -78,6 +99,8 @@ int main(void){
 `1 5 ✔10 ✔8 7 6 4 3 2 9` : 10과 8을 비교하고, 10이 더 크므로 교환한다. 👉 `1 5 ✔8 ✔10 7 6 4 3 2 9` ...
 
 `1 5 8 7 6 4 3 2 9 ✔10` : 따라서 마지막에는 가장 큰 숫자 10이 맨 끝에 위치하게 된다.
+
+## C
 
 ```c++
 #include <stdio.h>
@@ -106,6 +129,21 @@ int main(void){
 }
 ```
 
+## python
+
+```python
+n = 10
+numbers = [1, 10, 5, 8, 7, 6, 4, 3, 2, 9]
+
+for i in range(1, n):
+    for j in range(0, n-1):
+        if numbers[j] > numbers [j+1]:
+            numbers[j], numbers[j+1] = numbers[j+1], numbers[j]
+
+print(numbers)
+# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```
+
 <strong>Big O Notation : N^2 이지만...</strong>
 
 선택정렬과 마찬가지로 N^2의 시간복잡도를 가지지만 실제로 더 수행시간이 느리고 비효율적인 알고리즘이다.
@@ -113,7 +151,7 @@ int main(void){
 
 ---
 
-<h2 id="sort-insertion">삽입 정렬</h2>
+<h1 id="sort-insertion">삽입 정렬</h1>
 
 > 각 숫자를 "적절한" 위치에 삽입한다면 어떨까?
 
@@ -122,6 +160,8 @@ int main(void){
 `1 ✔10 ✔5 8 7 6 4 3 2 9` : 10과 5를 비교, 스왑 👉 `1 ✔5 ✔10 8 7 6 4 3 2 9` 👉 `✔1 ✔5 10 8 7 6 4 3 2 9` : 1과 5를 비교, 정렬되어있으므로 패스.
 
 `1 5 ✔10 ✔8 7 6 4 3 2 9` : 10과 8을 비교, 스왑 👉 `1 5 ✔8 ✔10 7 6 4 3 2 9` 👉 `1 ✔5 ✔8 10 7 6 4 3 2 9` : 5와 8을 비교, 정렬되어있으므로 패스...
+
+## C
 
 ```c++
 #include <stdio.h>
@@ -150,61 +190,33 @@ int main(void){
 }
 ```
 
+## python
+
+```python
+n = 10
+numbers = [1, 10, 5, 8, 7, 6, 4, 3, 2, 9]
+
+for i in range(1, n):
+    for j in range(i, 0, -1):
+        if numbers[j-1] > numbers[j] :
+            numbers[j-1], numbers[j] = numbers[j], numbers[j-1]
+        else:
+            break
+print(numbers)
+# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```
+
 <strong>Big O Notation : N^2 이지만...</strong>
 
 마찬가지로 N^2 의 시간복잡도를 가지지만 데이터가 "거의 정렬된" 상태에서 삽입정렬은 뛰어난 성능을 보인다.
 
 ---
 
-<h2 id="sort-bubble">버블 정렬</h2>
+<h1 id="sort-quick">퀵 정렬</h1>
 
-> 바로 옆에 있는 숫자를 비교하고 교환하자.
+대표적으로 호어방식(첫번째 숫자를 피벗으로 정하는 방식)과 로무토방식(끝 숫자를 피벗으로 정하는 방식)이 있음.
 
-`✔1 ✔10 5 8 7 6 4 3 2 9` : 1과 10을 비교하고 1이 더 작으므로 그냥 둔다.
-
-`1 ✔10 ✔5 8 7 6 4 3 2 9` : 10과 5를 비교하고, 10이 더 크므로 교환한다. 👉 `1 ✔5 ✔10 8 7 6 4 3 2 9`
-
-`1 5 ✔10 ✔8 7 6 4 3 2 9` : 10과 8을 비교하고, 10이 더 크므로 교환한다. 👉 `1 5 ✔8 ✔10 7 6 4 3 2 9` ...
-
-`1 5 8 7 6 4 3 2 9 ✔10` : 따라서 마지막에는 가장 큰 숫자 10이 맨 끝에 위치하게 된다.
-
-```c++
-#include <stdio.h>
-
-int main(void){
-
-	int i, j, temp;
-
-	int array[10] = {1, 10, 5, 8, 7, 6, 4, 3, 2, 9};
-
-	for(i=0; i<10; i++){
-		for(j=0; j<9-i; j++){
-			if(array[j] > array[j+1]){
-				temp = array[j+1];
-				array[j+1] = array[j];
-				array[j] = temp;
-			}
-		}
-	}
-
-	for(i=0; i<10; i++){
-		printf("%d ", array[i]);
-	}
-
-	return 0;
-}
-```
-
-<strong>Big O Notation : N^2 이지만...</strong>
-
-선택정렬과 마찬가지로 N^2의 시간복잡도를 가지지만 실제로 더 수행시간이 느리고 비효율적인 알고리즘이다.
-👉 옆의 숫자를 비교해서 자리를 바꿔주는 연산을 계속해서 수행하기 때문.
-
----
-
-<h2 id="sort-quick">퀵 정렬</h2>
-
-> 피벗을 기준으로 두 부분으로 나눈다(분할과 정복 + 재귀)
+> (호어방식) 피벗을 기준으로 두 부분으로 나눈다(분할과 정복 + 재귀)
 
 (1) 첫 번째 숫자를 피벗으로 설정한다.
 
@@ -231,6 +243,8 @@ int main(void){
 `✔2 1 ✔(3) 6 10 5 8 4 7 9` : (3-2)
 
 `(2) 1 /--3--/ (6) 10 5 8 4 7 9` : (1) 3을 기준으로 분할
+
+## C
 
 ```c++
 #include <stdio.h>
@@ -287,13 +301,45 @@ int main(void){
 }
 ```
 
+## python
+
+```python
+def quicksort(array, start, end):
+    if start >= end:
+        return
+    pivot = start
+    left = start + 1
+    right = end
+
+    while left <= right:
+        while left <= end and array[left] <= array[pivot]:
+            left += 1
+        while start < right and array[pivot] <= array[right]:
+            right -= 1
+        if left > right:
+            array[right], array[pivot] = array[pivot], array[right]
+        else:
+            array[left], array[right] = array[right], array[left]
+
+    quicksort(array, start, right - 1)
+    quicksort(array, right + 1, end)
+
+n = 10
+numbers = [1, 10, 5, 8, 7, 6, 4, 3, 2, 9]
+
+quicksort(numbers, 0, n-1)
+
+print(numbers)
+# [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```
+
 <strong>Big O Notation : N \* log(N)</strong>
 
 계속해서 절반으로 쪼개기 때문에 "일반적인 경우" 효율적인 알고리즘이지만, 최악의 경우, 예를 들어 데이터가 "거의 정렬된 상태"라면 N\*N 의 시간복잡도를 보여준다.("거의 정렬된 상태"에서는 삽입정렬이 더 뛰어날 수 있다.)
 
 ---
 
-<h2 id="sort-merge">병합 정렬</h2>
+<h1 id="sort-merge">병합 정렬</h1>
 
 > "일단" 반으로 나누고 나중에 합치자 (분할과 정복 + 재귀)
 
@@ -382,7 +428,7 @@ int main(void){
 
 ---
 
-<h2 id="sort-heap">힙 정렬</h2>
+<h1 id="sort-heap">힙 정렬</h1>
 
 > [힙(heap)](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/%ED%9E%99)을 이용해 데이터를 정렬한다.
 
@@ -461,7 +507,7 @@ int main(void){
 
 ---
 
-<h2 id="sort-counting">계수 정렬</h2>
+<h1 id="sort-counting">계수 정렬</h1>
 
 > 수의 범위가 특정한 경우 갯수를 센다.
 
