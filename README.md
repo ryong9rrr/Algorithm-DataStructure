@@ -1,4 +1,4 @@
-# 📃 기초 알고리즘, 자료구조
+# 📃 Algorithm, Data-structure with picture
 
 - `C`
 - `C++`
@@ -6,44 +6,46 @@
 
 ---
 
-## 알고리즘
+## Algorithm
 
-- [정렬](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EC%A0%95%EB%A0%AC)
+- Sort
 
-  - 선택 정렬
-  - 버블 정렬
-  - 삽입 정렬
-  - 퀵 정렬
-  - 병합 정렬
-  - 힙 정렬
-  - 계수 정렬
+  - Selection-sort
+  - Bubble-sort
+  - Insertion-sort
+  - Quick-sort
+  - Merge-sort
+  - Heap-sort
+  - Counting-sort
 
-- [DFS, BFS](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/DFS%2C%20BFS)
+- DFS, BFS
 
-- [Union-Find](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/Union-Find)
+- Union-Find
 
-- [크루스칼 알고리즘](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%ED%81%AC%EB%A3%A8%EC%8A%A4%EC%B9%BC%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
+- Kruskal
 
-- [동적계획법(Dynamic-Programming)](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EB%8F%99%EC%A0%81%EA%B3%84%ED%9A%8D%EB%B2%95)
+- Dynamic-Programming(DP)
 
-- [다익스트라 알고리즘](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98/%EB%8B%A4%EC%9D%B5%EC%8A%A4%ED%8A%B8%EB%9D%BC%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98)
+- Dijkstra
 
-- [플로이드 와샬 알고리즘]()
+- Floyed-warshall
 
----
-
-## 자료구조
-
-- [힙](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/%ED%9E%99)
-- [스택](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/%EC%8A%A4%ED%83%9D)
-- [큐](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/%ED%81%90)
-- [그래프](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/%EA%B7%B8%EB%9E%98%ED%94%84)
-- [이진 트리](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0/%EC%9D%B4%EC%A7%84%ED%8A%B8%EB%A6%AC)
+- Topology-sort
 
 ---
 
-<strong>🌈 공부에 참고한...</strong>
+## Data-structure
 
-> - [동빈나(나동빈 님) 실전알고리즘 강좌(유튜브)](https://www.youtube.com/watch?v=qQ5iLNjpxSk&list=PLRx0vPvlEmdDHxCvAQS1_6XV4deOwfVrz&index=1)
-> - [이것이 취업을 위한 코딩테스트다 with 파이썬](https://www.hanbit.co.kr/store/books/look.php?p_code=B8945183661)
+- Heap
+- Stack
+- Queue
+- Graph
+- Binary-tree
+
+---
+
+<strong>💖 공부에 참고한...</strong>
+
+> - [동빈나(나동빈 님) 실전알고리즘 강좌(유튜브)
+> - [이것이 취업을 위한 코딩테스트다 with 파이썬
 > - [파이썬 알고리즘 인터뷰](http://www.kyobobook.co.kr/product/detailViewKor.laf?mallGb=KOR&ejkGb=KOR&barcode=9791189909178)

@@ -4,13 +4,13 @@
 
 - 보통 다익스트라 알고리즘은 하나의 노드를 기준으로 경로를 찾기 때문에 1차원 배열로 구현을 하지만 플로이드 와샬 알고리즘은 모든 노드를 기준으로 경로를 찾기 때문에 2차원 배열(행렬)로 구현을 한다.
 
-## 예시
+# 예시
 
 <img width="30%" src="./img/fw0.jpg" />
 <img width="30%" src="./img/fw1.jpg" />
 <img width="30%" src="./img/fw2.jpg" />
 
-## python
+# python
 
 ```python
 INF = int(1e9)
