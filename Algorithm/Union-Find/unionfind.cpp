@@ -36,4 +36,8 @@ int main(void) {
 	unionParent(parent, 1, 5);
 	printf("1 and 5 ? %d\n", findParent(parent, 1, 5));
 	// 1
+	
+	for(int i=1; i<=10; i++){
+		printf("%d ",parent[i] );
+	}
 }

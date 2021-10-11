@@ -58,3 +58,47 @@ int main(void) {
 	// 1
 }
 ```
+
+## python
+
+```python
+def find_parent(array:list, x:int)->int:
+    if array[x] != x:
+        array[x] = find_parent(array, array[x])
+    return array[x]
+
+def union_parent(array:list, a:int, b:int):
+    a = find_parent(array, a)
+    b = find_parent(array, b)
+    if a < b:
+        array[b] = a
+    else:
+        array[a] = b
+
+def check_parent(array:list, a:int, b:int)->bool:
+    a = find_parent(array, a)
+    b = find_parent(array, b)
+    if a == b:
+        return True
+    else:
+        return False
+
+# node num
+n = 8
+
+# node init as index
+parent = [x for x in range(n+1)]
+
+union_parent(parent, 1, 2)
+union_parent(parent, 2, 3)
+union_parent(parent, 3, 4)
+union_parent(parent, 5, 6)
+union_parent(parent, 6, 7)
+union_parent(parent, 7, 8)
+
+print(parent[1:])
+# [1, 1, 1, 1, 5, 5, 5, 5]
+
+print(check_parent(parent, 1, 5))
+# False
+```
