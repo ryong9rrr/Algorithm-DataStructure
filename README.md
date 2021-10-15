@@ -40,6 +40,13 @@
 
   - Edmonds-Karp Algorithm
 
+- [Bipartite-matching](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Algorithm/Bipartite-matching)
+
+- [String-matching](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Algorithm/String-matching)
+
+  - KMP(Knuth-Morris-Pratt)
+  - Rabin-Karp
+
 ---
 
 ## Data-structure
