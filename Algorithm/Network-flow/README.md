@@ -12,6 +12,8 @@
 
 - 따라서 가능한 보다 많은 경우의 수를 탐색하여 최적의 해를 찾아내는 것
 
+- 시간복잡도 O(V x E)
+
 ## python
 
 ```python
@@ -80,3 +82,10 @@ def max_flow(start:int, end:int, n:int)->int:
 print(max_flow(1, 6, n))
 # 19
 ```
+
+# Hopcroft-Karf
+
+> 관련 포스팅
+>
+> - https://blog.naver.com/na_qa/221478734069
+> - https://gazelle-and-cs.tistory.com/35

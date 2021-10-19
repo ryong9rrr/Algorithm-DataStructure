@@ -1,11 +1,5 @@
 # 📃 Algorithm, Data-structure with picture
 
-- `C`
-- `C++`
-- `python`
-
----
-
 ## Algorithm
 
 - [Sort](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Algorithm/Sort)
@@ -39,6 +33,9 @@
 - [Network-flow](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Algorithm/Network-flow)
 
   - Edmonds-Karp Algorithm
+  - Ford-Fulkerson Algorithm
+  - Dinic's Algorithm
+  - Hopcroft-Karp Algorithm
 
 - [Bipartite-matching](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Algorithm/Bipartite-matching)
 
@@ -51,11 +48,15 @@
 
 ## Data-structure
 
-- [Heap](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Data-structure/Heap)
 - [Stack](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Data-structure/Stack)
 - [Queue](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Data-structure/Queue)
-- [Graph](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Data-structure/Graph)
+- Linked-list
+- Dictionary
+- Hash-table
+- [Heap](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Data-structure/Heap)
+- Tree
 - [Binary-tree](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Data-structure/Binary-tree)
+- [Graph](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Data-structure/Graph)
 
 ---
 
