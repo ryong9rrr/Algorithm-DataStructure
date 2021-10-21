@@ -20,16 +20,16 @@ function Queue(array) {
   this.head = 0;
 }
 
-Queue.prototype.enqueue = function (ele) {
-  return (this.array[this.tail++] = ele);
+Queue.prototype.enqueue = function (element) {
+  return (this.array[this.tail++] = element);
 };
 
 Queue.prototype.dequeue = function () {
   if (this.tail === this.head) return undefined;
 
-  let ele = this.array[this.head];
+  let element = this.array[this.head];
   delete this.array[this.head++];
-  return ele;
+  return element;
 };
 
 Queue.prototype.front = function () {

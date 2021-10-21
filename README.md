@@ -54,8 +54,9 @@
 - Dictionary
 - Hash-table
 - [Heap](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Data-structure/Heap)
-- Tree
 - [Binary-tree](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Data-structure/Binary-tree)
+- Binary-search-tree
+- Trie
 - [Graph](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Data-structure/Graph)
 
 ---
