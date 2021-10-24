@@ -44,6 +44,8 @@
   - KMP(Knuth-Morris-Pratt)
   - Rabin-Karp
 
+- [Greedy](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Algorithm/Greedy)
+
 ---
 
 ## Data-structure
