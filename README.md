@@ -63,6 +63,12 @@
 
 ---
 
+## [Number-Theory](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Number-Theory)
+
+- 배수 판정법
+
+---
+
 <strong>💖 공부에 참고한...</strong>
 
 > - [동빈나(나동빈 님) 실전알고리즘 강좌(유튜브)](https://www.youtube.com/watch?v=qQ5iLNjpxSk&list=PLRx0vPvlEmdDHxCvAQS1_6XV4deOwfVrz&index=1)
