@@ -12,7 +12,16 @@
   - Heap-sort
   - Counting-sort
 
+- [Search](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Algorithm/Search)
+
+  - Linear Search(Brute force)
+  - Binary Search
+
+- [Greedy](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Algorithm/Greedy)
+
 - [DFS, BFS](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Algorithm/DFS%2C%20BFS)
+
+- [Lowest-Common-Ancestor(LCA)](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Algorithm/LCA)
 
 - [Union-Find](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Algorithm/Union-Find)
 
@@ -44,8 +53,6 @@
   - KMP(Knuth-Morris-Pratt)
   - Rabin-Karp
 
-- [Greedy](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Algorithm/Greedy)
-
 ---
 
 ## Data-structure
@@ -57,6 +64,11 @@
 - Hash-table
 - [Heap](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Data-structure/Heap)
 - [Binary-tree](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Data-structure/Binary-tree)
+- [Segment-tree](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Data-structure/Segment-tree)
+- [Index-tree](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Data-structure/Index-tree)
+
+  - Fenwick Tree
+
 - Binary-search-tree
 - Trie
 - [Graph](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Data-structure/Graph)
