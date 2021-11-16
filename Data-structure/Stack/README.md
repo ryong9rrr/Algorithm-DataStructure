@@ -66,50 +66,49 @@ int main(void){
 
 # Python
 
-## append(), pop()
-
-내장함수를 이용한 구현,
-
-js의 경우 `push()`, `pop()`
+## python 리스트 자료형으로 스택 ADT 구현
 
 ```python
-#python
-data_stack = []
+class Stack:
+    def __init__(self):
+        self.list = []
 
-data_stack.append(1)
-data_stack.append(2)
-data_stack.append(3)
+    def push(self, item):
+        self.list.append(item)
 
-print(data_stack) # [1,2,3]
+    def pop(self):
+        if len(self.list) == 0:
+            print("stack is empty")
+        else:
+            item = self.list[-1]
+            del self.list[-1]
+            return item
 
-print(data_stack.pop()) # 3
+stack = Stack()
+for i in range(1, 5):
+    stack.push(i)
 
-print(data_stack) #[1,2]
+print(stack.pop())
+# 4
 ```
 
-## "push", "pop" 직접 정의
+## 연결리스트를 이용한 스택 ADT 구현
 
 ```python
-#python
-data_stack = []
+class Node:
+  def __init__(self, item, next):
+    self.item = item
+    self.next = next
 
-def push(data) :
-  data_stack.append(data)
+class Stack:
+  def __init__(self):
+    self.last = None
 
-def pop():
-  data = data_stack[-1]
-  del data_stack[-1]
-  return data
+  def push(self, item):
+    self.last = Node(item, self.last)
 
-push(1)
-push(2)
-push(3)
-
-print(data_stack) # [1,2,3]
-
-print(pop()) # 3
-print(pop()) # 2
-
-print(data_stack) # [1]
-
+  def pop(self):
+    item = self.last.item
+    self.last = self.last.next
+    return item
 ```
