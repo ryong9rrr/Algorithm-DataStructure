@@ -71,17 +71,17 @@ int main(void){
 ```python
 class Stack:
     def __init__(self):
-        self.list = []
+        self.stack = []
 
     def push(self, item):
-        self.list.append(item)
+        self.stack.append(item)
 
     def pop(self):
-        if len(self.list) == 0:
+        if len(self.stack) == 0:
             print("stack is empty")
         else:
-            item = self.list[-1]
-            del self.list[-1]
+            item = self.stack[-1]
+            del self.stack[-1]
             return item
 
 stack = Stack()

@@ -36,109 +36,127 @@ int main(void){
 
 # Python
 
-## FIFO
+python의 리스트는 동적배열이기 때문에 `pop(0)`으로 맨 앞의 요소를 꺼내게 되면 모든 원소를 한 칸씩 앞으로 이동시켜 O(n)의 시간복잡도를 요구한다.
 
 ```python
-import queue
+class Queue:
+    def __init__(self):
+        self.q = []
 
-data = queue.Queue()
+    def push(self, item):
+        self.q.append(item)
 
-#enqueue
-data.put("hi")
-data.put(1)
+    def pop(self):
+        if len(self.q) == 0:
+            print("queue is empty")
+        else:
+            return self.q.pop(0)
 
-#size
-print(data.qsize())
+q = Queue()
+for i in range(1, 5):
+    q.push(i)
 
-#dequeue
-print(data.get()) #hi
-print(data.get()) #1
+print(q.pop())
+# 1
+print(q.pop())
+# 2
 ```
 
-## LIFO (stack)
+## deque
+
+따라서 python에서는 파이썬 표준 라이브러리의 `deque`를 이용하는 것이 좋음.
 
 ```python
-import queue
+import collections
 
-data = queue.LifoQueue()
+class Queue:
+    def __init__(self):
+        self.q = collections.deque()
 
-#enqueue
-data.put("hi")
-data.put(1)
+    def push(self, item):
+        self.q.append(item)
 
-#dequeue
-print(data.get()) #1
-print(data.get()) #hi
+    def pop(self):
+        if len(self.q) == 0:
+            print("queue is empty")
+        else:
+            return self.q.popleft()
+
+q = Queue()
+for i in range(1, 5):
+    q.push(i)
+
+print(q.pop())
+# 1
+print(q.pop())
+# 2
 ```
 
-## Priority
+# 원형 큐
 
-"튜플" 형태로 값이 입력됨.
-
-```python
-import queue
-
-data = queue.PriorityQueue()
-
-data.put((2, "one"))
-data.put((3, "two"))
-data.put((1, "three"))
-
-print(data.get()) # (1, "three")
-print(data.get()) # (2, "one")
-print(data.get()) # (3, "two")
-```
-
-## 라이브러리 없이 구현
-
-`del`로 배열의 맨 앞의 값을 없애준다.
-
-### FIFO
+원형 큐를 구현할 때는 size를 명시해주어야 한다.
 
 ```python
+class CircularQueue:
+    def __init__(self, k:int):
+        self.q = [None] * k
+        self.maxlen = k
+        self.p1 = 0
+        self.p2 = 0
 
-data_list = []
+    # rear 포인터 이동
+    def enQueue(self, value:int)->bool:
+        if self.q[self.p2] is None:
+            self.q[self.p2] = value
+            self.p2 = (self.p2 + 1) % self.maxlen
+            return True
+        else:
+            return False
 
-def enqueue(data) :
-  data_list.append(data)
+    # front 포인터 이동
+    def deQueue(self)->int:
+        if self.q[self.p1] is None:
+            return -1
+        else:
+            x = self.q[self.p1]
+            self.q[self.p1] = None
+            self.p1 = (self.p1 + 1) % self.maxlen
+            return x
 
-def dequeue():
-  data = data_list[0]
-  del data_list[0]
-  return data
+    def Front(self)->int:
+        return -1 if self.q[self.p1] is None else self.q[self.p1]
 
-enqueue(1)
-enqueue(2)
-enqueue(3)
+    def Rear(self)->int:
+        return -1 if self.q[self.p2 - 1] is None else self.q[self.p2 - 1]
 
-print(data_list)
+    def isEmpty(self)->bool:
+        return self.p1 == self.p2 and self.q[self.p1] is None
 
-print(dequeue())
+    def isFull(self)->bool:
+        return self.p1 == self.p2 and self.q[self.p1] is not None
 
-print(data_list)
+cq = CircularQueue(5)
 
-```
+for i in range(6):
+    print(cq.enQueue(i))
 
-### LIFO
+"""
+True
+True
+True
+True
+True
+False
+"""
 
-`pop()` 활용.
+while not cq.isEmpty():
+    print(cq.deQueue())
 
-```python
-data_list = []
-
-def enqueue(data) :
-  data_list.append(data)
-
-def dequeue():
-  return data_list.pop()
-
-enqueue(1)
-enqueue(2)
-enqueue(3)
-
-print(data_list) # [1,2,3]
-
-print(dequeue()) # 3
-
-print(data_list) # [1,2]
+"""
+0
+1
+2
+3
+4
+"""
 ```
