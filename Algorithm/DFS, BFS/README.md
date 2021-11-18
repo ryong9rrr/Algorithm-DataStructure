@@ -144,3 +144,30 @@ int main(void){
 
 // 1 2 3 4 5 6 7
 ```
+
+## DFS 모든경로탐색
+
+사이클이 없는 유향 그래프에서 한 노드에서 다른 노드로 가는 모든 경로 탐색
+
+```python
+from collections import deque, defaultdict
+# when all node is connected, from start to end
+# graph is dictionary
+stack = deque()
+paths = []
+def dfs_all(v:int, goal:int):
+    visited[v] = True
+    stack.append(v)
+    if v == goal:
+        path = []
+        for i in dq:
+            path.append(i)
+        paths.append(path)
+        stack.pop()
+        return
+    for node, cost in graph[v]:
+        if node and not visited[node]:
+            dfs_all(node, goal)
+            visited[node] = False
+    stack.pop()
+```

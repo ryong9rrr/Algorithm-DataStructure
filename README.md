@@ -75,6 +75,10 @@
 
 ---
 
+## [Math](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Math)
+
+- 등차수열
+
 ## [Number-Theory](https://github.com/ryong9rrr/algorithm-basic-c/tree/master/Number-Theory)
 
 - 배수 판정법
