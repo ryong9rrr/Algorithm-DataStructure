@@ -2,7 +2,7 @@
 
 어떤 값을 찾을 때, 데이터가 정렬되어있다면 효과적으로 값을 찾을 수 있다.
 
-## Linear Search
+# Linear Search
 
 - 단순하게 브루트포스로 탐색
 
@@ -31,11 +31,13 @@ int main(void){
 // 8 at searched.
 ```
 
-## Binary Search
+# Binary Search
 
 이분 탐색은 **재귀**를 이용하여 범위를 반으로 계속해서 줄여나간다. 따라서 시간복잡도는 밑이 2인 O(logN)이다.
 
 > 10만개의 데이터 중에서 원하는 값을 찾기 위해서는 최대 단 16번의 연산만 수행하면 된다. (2^17 > 100,000 이므로)
+
+## C
 
 ```C
 #include <iostream>
@@ -60,4 +62,42 @@ int main(void){
 		cout << result + 1 << " at searched.";
 }
 // 4 at searched.
+```
+
+## python
+
+```python
+data = [1, 3, 4, 5, 7, 8, 9, 10, 12, 14, 17]
+n = len(data)
+
+# 재귀로 이진탐색
+def recursive_binary_search(array:list, target:int, start:int, end:int)->int or None:
+    if start > end:
+        return None
+    mid = (start + end) // 2
+    if array[mid] == target:
+        return mid
+    # target은 왼쪽 그룹에 있다는 것
+    elif target < array[mid]:
+        return recursive_binary_search(array, target, start, mid - 1)
+    else:
+        return recursive_binary_search(array, target, mid + 1, end)
+
+print(recursive_binary_search(data, 1, 0, n - 1)) # 0 (index)
+print(recursive_binary_search(data, 11, 0, n - 1)) # None
+
+# 반복으로 이진탐색
+def repeat_binary_search(array:list, target:int, start:int, end:int)->int or None:
+    while start <= end:
+        mid = (start + end) // 2
+        if array[mid] == target:
+            return mid
+        elif target < array[mid]:
+            end = mid - 1
+        else:
+            start = mid + 1
+    return None
+
+print(repeat_binary_search(data, 1, 0, n - 1)) # 0 (index)
+print(repeat_binary_search(data, 11, 0, n - 1)) # None
 ```

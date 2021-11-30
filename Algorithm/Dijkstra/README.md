@@ -1,8 +1,8 @@
 # 다익스트라
 
-- 한 노드에서 다른 모든 노드로 가는 경로를 찾는다. 즉 최단거리를 찾을 수 있고, 기준이 한 개의 노드이기 때문에 보통 1차원 배열안에서 구현한다.
+- 한 노드에서 다른 노드로 가는 경로를 찾는다. 즉 최단거리를 찾을 수 있고, 기준이 한 개의 노드이기 때문에 보통 1차원 배열안에서 구현한다.
 
-- 그리디 알고리즘과 다이나믹 프로그래밍 알고리즘의 한 유형
+- 일종의 greedy + bfs 알고리즘과 다이나믹 프로그래밍 알고리즘의 한 유형
   - 최단거리는 여러개의 최단 거리로 이루어져 있다고 생각할 수 있기 때문.
 
 ## 예시
@@ -235,54 +235,4 @@ int main(void){
 	}
 
 }
-```
-
-## python
-
-```python
-import heapq
-
-INF = int(1e9)
-
-# node num
-n = 6
-# edge num
-m = 11
-
-# node info
-graph = [
-    [],
-    [(2, 2), (3, 5), (4, 1)],
-    [(1, 2), (3, 3), (4, 2)],
-    [(1, 5), (2, 3), (4, 3), (5, 1), (6, 5)],
-    [(1, 1), (2, 2), (3, 3), (5, 1)],
-    [(3, 1), (4, 1), (6, 2)],
-    [(3, 5), (5, 2)]
-]
-
-# check visited
-visited = [False] * (n + 1)
-
-# distance
-distance = [INF] * (n + 1)
-
-def dijkstra(start):
-    q = []
-    heapq.heappush(q, (0, start))
-    distance[start] = 0
-    # if q is not empty
-    while q:
-        dist, now = heapq.heappop(q)
-        if distance[now] < dist:
-            continue
-        for node, d in graph[now]:
-            cost = dist + d
-            if cost < distance[node]:
-                distance[node] = cost
-                heapq.heappush(q, (cost, node))
-
-dijkstra(1)
-
-print(distance[1:])
-# [0, 2, 3, 1, 2, 4]
 ```

@@ -64,68 +64,59 @@ int main(void){
 // 9 7 8 6 3 5 5 1 6
 ```
 
-# python 힙 구현
+## python의 heapq 모듈 예제
+
+다음 정렬되지 않은 배열에서 k번째로 큰 요소를 추출하라.
+
+```
+nums = [3,2,3,1,2,4,5,5,6]
+k = 4
+```
+
+### 1. heapq 모듈을 이용해서 heap에 모두 푸시한 후 k번째 요소 추출
 
 ```python
-# heap
-class BinaryHeap(object):
-    def __init__(self):
-        self.items = [None]
+import heapq
+def findKthLargest(nums:list[int], k:int)->int:
+    heap = []
+    for n in nums:
+        # heapq 모듈은 최소힙만 지원하기 때문에 최대힙 구성을 위해 음수로 표현
+        heapq.heappush(heap, -n)
 
-    def __len__(self):
-        return len(self.items) - 1
+    for _ in range(1, k):
+        heapq.heappop(heap)
 
-    # insert heapify
-    def _percolate_up(self):
-        i = len(self)
-        parent = i // 2
-        while parent > 0:
-            if self.items[i] < self.items[parent]:
-                self.items[parent], self.items[i] = \
-                    self.items[i], self.items[parent]
-            i = parent
-            parent = i // 2
+    return -heapq.heappop(heap)
 
-    # insert, this is heapq.heappush()
-    def insert(self, k):
-        self.items.append(k)
-        self._percolate_up()
+print(findKthLargest(nums, k)) # 4
+```
 
-    # pop heapify
-    def _percolate_down(self, idx):
-        left = idx * 2
-        right = idx * 2 + 1
-        smallest = idx
+### 2. heapq 모듈의 heapify
 
-        if left <= len(self) and self.items[left] < self.items[smallest]:
-            smallest = left
-        if right <= len(self) and self.items[right] < self.items[smallest]:
-            smallest = right
-        if smallest != idx:
-            self.items[idx], self.items[smallest] = \
-                self.items[smallest], self.items[idx]
-            self._percolate_down(smallest)
+배열에서 하나씩 꺼내어 `heapq.heappush()`를 하지 않고도 리스트를 heap으로 만든다. (값을 추가하면 힙 특성이 깨짐, pop만 가능)
 
-    # extract, this is heapq.heappop()
-    def extract(self):
-        extracted = self.items[1]
-        self.items[1] = self.items[len(self)]
-        self.items.pop()
-        self._percolate_down(1)
-        return extracted
+```python
+import heapq
+def findKthLargest(nums:list[int], k:int)->int:
+    heapq.heapify(nums)
 
+    # 최대힙 이므로
+    for _ in range(len(nums) - k):
+        heapq.heappop(nums)
 
-numbers = [1, 10, 5, 8, 7, 6, 4, 3, 2, 9]
+    return heapq.heappop(nums)
 
-heap = BinaryHeap()
+print(findKthLargest(nums, k)) # 4
+```
 
-for number in numbers:
-    heap.insert(number)
+### 3. heapq 모듈의 nlargest
 
-print(heap.items)
-# [None, 1, 2, 4, 3, 8, 6, 5, 10, 7, 9]
+가장 큰 값부터 n개의 데이터를 리스트로 반환
 
-for _ in range(len(numbers)):
-    print(heap.extract(), end=" ")
-# 1 2 3 4 5 6 7 8 9 10
+```python
+import heapq
+def findKthLargest(nums:list[int], k:int)->int:
+    return heapq.nlargest(k, nums)
+
+print(findKthLargest(nums, k)) # [6, 5, 5, 4]
 ```

@@ -7,6 +7,8 @@
 <img width="30%" src="./img/dfs3.jpg" />
 <img width="30%" src="./img/dfs4.jpg" />
 
+## C
+
 ```c
 #include <iostream>
 #include <vector>
@@ -67,6 +69,44 @@ int main(void){
 // 1 2 4 5 6 3 7
 ```
 
+## python
+
+```python
+graph = {
+    1: [2, 3, 4],
+    2: [5],
+    3: [5],
+    4: [],
+    5: [6, 7],
+    6: [],
+    7: [3]
+}
+
+def recursive_dfs(v, discovered = []):
+    discovered.append(v)
+    for w in graph[v]:
+        if w not in discovered:
+            discovered = recursive_dfs(w, discovered)
+    return discovered
+
+#print(recursive_dfs(1))
+#[1, 2, 5, 6, 7, 3, 4]
+
+def iterative_dfs(start_v):
+    discovered = []
+    stack = [start_v]
+    while stack:
+        v = stack.pop()
+        if v not in discovered:
+            discovered.append(v)
+            for w in graph[v]:
+                stack.append(w)
+    return discovered
+
+#print(iterative_dfs(1))
+#[1, 4, 3, 5, 7, 6, 2]
+```
+
 # BFS(Breath First Search, 너비우선탐색)
 
 그래프와 Queue로 구현한다.
@@ -74,6 +114,8 @@ int main(void){
 <img width="30%" src="./img/bfs1.jpg" />
 <img width="30%" src="./img/bfs2.jpg" />
 <img width="30%" src="./img/bfs3.jpg" />
+
+## C
 
 ```c
 #include <iostream>
@@ -144,6 +186,39 @@ int main(void){
 
 // 1 2 3 4 5 6 7
 ```
+
+## python
+
+```python
+import collections
+
+graph = {
+    1: [2, 3, 4],
+    2: [5],
+    3: [5],
+    4: [],
+    5: [6, 7],
+    6: [],
+    7: [3]
+}
+
+def iterative_bfs(start_v):
+    discovered = [start_v]
+    q = collections.deque()
+    q.append(start_v)
+    while q:
+        v = q.popleft()
+        for w in graph[v]:
+            if w not in discovered:
+                discovered.append(w)
+                q.append(w)
+    return discovered
+
+print(iterative_bfs(1))
+#[1, 2, 3, 4, 5, 6, 7]
+```
+
+---
 
 ## DFS 모든경로탐색
 
