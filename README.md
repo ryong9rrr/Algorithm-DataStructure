@@ -53,6 +53,8 @@
   - KMP(Knuth-Morris-Pratt)
   - Rabin-Karp
 
+- [Binary-Search](https://github.com/ryong9rrr/cs_basic/tree/master/Algorithm/Binary-Search)
+
 ---
 
 ## Data-structure
@@ -69,7 +71,7 @@
 
   - Fenwick Tree
 
-- [Binary-search-tree](https://github.com/ryong9rrr/cs_basic/tree/master/Data-structure/Graph)
+- [Binary-search-tree](https://github.com/ryong9rrr/cs_basic/tree/master/Data-structure/Binary-search-tree)
 - Trie
 - [Graph](https://github.com/ryong9rrr/cs_basic/tree/master/Data-structure/Graph)
 
