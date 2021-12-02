@@ -12,10 +12,7 @@
   - Heap-sort
   - Counting-sort
 
-- [Search](https://github.com/ryong9rrr/cs_basic/tree/master/Algorithm/Search)
-
-  - Linear Search(Brute force)
-  - Binary Search
+- [Binary-Search](https://github.com/ryong9rrr/cs_basic/tree/master/Algorithm/Binary-Search)
 
 - [Greedy](https://github.com/ryong9rrr/cs_basic/tree/master/Algorithm/Greedy)
 
@@ -52,8 +49,6 @@
 
   - KMP(Knuth-Morris-Pratt)
   - Rabin-Karp
-
-- [Binary-Search](https://github.com/ryong9rrr/cs_basic/tree/master/Algorithm/Binary-Search)
 
 ---
 
