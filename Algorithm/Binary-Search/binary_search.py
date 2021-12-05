@@ -5,7 +5,8 @@ target = 4
 # 재귀
 def recursive_binary_search(left:int, right:int)->int:
     if left <= right:
-        mid = (left + right) // 2
+        #mid = (left + right) // 2
+        mid = left + (right - left) // 2
 
         if nums[mid] < target:
             return recursive_binary_search(mid + 1, right)
@@ -23,7 +24,8 @@ def repeat_binary_search()->int:
     left, right = 0, len(nums) - 1
 
     while left <= right:
-        mid = (left + right) // 2
+        #mid = (left + right) // 2
+        mid = left + (right - left) // 2
 
         if nums[mid] < target:
             left = mid + 1
