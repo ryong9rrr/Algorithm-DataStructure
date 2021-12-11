@@ -111,6 +111,8 @@ def iterative_dfs(start_v):
 
 그래프와 Queue로 구현한다.
 
+그때마다 가장 짧은 경로를 찾는 점에서, 그리디 유형의 알고리즘이라고 할 수 있음.
+
 <img width="30%" src="./img/bfs1.jpg" />
 <img width="30%" src="./img/bfs2.jpg" />
 <img width="30%" src="./img/bfs3.jpg" />

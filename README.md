@@ -16,6 +16,8 @@
 
 - [Greedy](https://github.com/ryong9rrr/cs_basic/tree/master/Algorithm/Greedy)
 
+  - Fractional Knapsack Problem(분할 가능한 배낭 문제)
+
 - [DFS, BFS](https://github.com/ryong9rrr/cs_basic/tree/master/Algorithm/DFS%2C%20BFS)
 
 - [Lowest-Common-Ancestor(LCA)](https://github.com/ryong9rrr/cs_basic/tree/master/Algorithm/LCA)
@@ -25,6 +27,8 @@
 - [Kruskal](https://github.com/ryong9rrr/cs_basic/tree/master/Algorithm/Kruskal)
 
 - [Dynamic-Programming(DP)](https://github.com/ryong9rrr/cs_basic/tree/master/Algorithm/DP)
+
+  - Knapsack Problem(분할이 가능하지 않는 일반적인 배낭 문제)
 
 - [Dijkstra](https://github.com/ryong9rrr/cs_basic/tree/master/Algorithm/Dijkstra)
 
