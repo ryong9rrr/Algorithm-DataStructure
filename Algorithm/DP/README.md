@@ -82,3 +82,55 @@ int main(void) {
 [타일 채우기](https://www.acmicpc.net/problem/2133)
 
 [타일 채우기 3](https://www.acmicpc.net/problem/14852)
+
+---
+
+# 배낭 문제 (Knapsack Problem)
+
+```python
+cargo = [
+    # (단가, kg)
+    (4, 12),
+    (2, 1),
+    (10, 4),
+    (1, 1),
+    (2, 2)
+]
+# 단가가 비싼 순으로 정렬
+cargo.sort(key= lambda x : x[1] / x[0])
+
+def zero_one_knapsack(cargo):
+    capacity = 15
+    pack = []
+
+    for i in range(len(cargo) + 1):
+        pack.append([])
+        for c in range(capacity + 1):
+            if i == 0 or c == 0:
+                pack[i].append(0)
+            elif cargo[i - 1][1] <= c:
+                pack[i].append(
+                    max(
+                        cargo[i - 1][0] + pack[i - 1][c - cargo[i - 1][1]],
+                        pack[i - 1][c]
+                    )
+                )
+            else:
+                pack[i].append(pack[i - 1][c])
+
+    return pack
+
+result = zero_one_knapsack(cargo)
+
+for i in result:
+    print(i)
+
+"""
+[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+[0, 0, 0, 0, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10]
+[0, 2, 2, 2, 10, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12]
+[0, 2, 3, 3, 10, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13]
+[0, 2, 3, 4, 10, 12, 13, 14, 15, 15, 15, 15, 15, 15, 15, 15]
+[0, 2, 3, 4, 10, 12, 13, 14, 15, 15, 15, 15, 15, 15, 15, 15]
+"""
+```
