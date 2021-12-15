@@ -62,22 +62,22 @@ int main(void) {
 ## python
 
 ```python
-def find_parent(array:list, x:int)->int:
-    if array[x] != x:
-        array[x] = find_parent(array, array[x])
-    return array[x]
+def find_parent(parent:list, x:int)->int:
+    if parent[x] != x:
+        parent[x] = find_parent(parent, parent[x])
+    return parent[x]
 
-def union_parent(array:list, a:int, b:int):
-    a = find_parent(array, a)
-    b = find_parent(array, b)
+def union_parent(parent:list, a:int, b:int):
+    a = find_parent(parent, a)
+    b = find_parent(parent, b)
     if a < b:
-        array[b] = a
+        parent[b] = a
     else:
-        array[a] = b
+        parent[a] = b
 
-def check_parent(array:list, a:int, b:int)->bool:
-    a = find_parent(array, a)
-    b = find_parent(array, b)
+def check_cycle(parent:list, a:int, b:int)->bool:
+    a = find_parent(parent, a)
+    b = find_parent(parent, b)
     if a == b:
         return True
     else:
@@ -99,6 +99,6 @@ union_parent(parent, 7, 8)
 print(parent[1:])
 # [1, 1, 1, 1, 5, 5, 5, 5]
 
-print(check_parent(parent, 1, 5))
+print(check_cycle(parent, 1, 5))
 # False
 ```
