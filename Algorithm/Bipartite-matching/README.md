@@ -53,7 +53,9 @@ def dfs(v, visited):
         if visited[node]:
             continue
         visited[node] = True
-        if not result[node] or dfs(node, visited):
+        # 아직 집이 비어있거나,
+        # 비어있지 않다면 현재 점유하고 있는 노드가 방문할 수 있는 집을 찾는다.
+        if not result[node] or dfs(result[node], visited):
             result[node] = v
             return True
     return False
