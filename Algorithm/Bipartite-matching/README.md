@@ -37,40 +37,43 @@
 ## python
 
 ```python
-# if match, return true
-def dfs(x:int, c:list, d:list)->bool:
-    for node in graph[x]:
-        if c[node]:
-            continue
-        c[node] = True
-        if d[node] == 0 or dfs(node, c, d):
-            d[node] = x
-            return True
-    return False
-
-n = 3
+# 사람 n명, 공간 m개
+n, m = 3, 3
 graph = {
     1: [1, 2, 3],
     2: [1],
     3: [2]
 }
-d = [0] * (n + 1)
+
+######################################
+result = [0] * (m + 1)
+
+def dfs(v, visited):
+    for node in graph[v]:
+        if visited[node]:
+            continue
+        visited[node] = True
+        if not result[node] or dfs(node, visited):
+            result[node] = v
+            return True
+    return False
+
 count = 0
-for i in range(1, n+1):
-    # initialize list c
-    c = [False] * (n + 1)
-    if dfs(i, c, d):
+for v in range(1, n + 1):
+    visited = [False] * (m + 1)
+    if dfs(v, visited):
         count += 1
+
 print(f"{count} 개의 매칭이 이루어졌습니다.")
 
-for i in range(1, n+1):
-    if d[i] != 0:
-        print(f"{d[i]} -> {i}")
+for i in range(1, m + 1):
+    if result[i]:
+        print(f"{result[i]} 번 사람이 {i}에 위치합니다.")
 
 """
 3 개의 매칭이 이루어졌습니다.
-2 -> 1
-3 -> 2
-1 -> 3
+2 번 사람이 1에 위치합니다.
+3 번 사람이 2에 위치합니다.
+1 번 사람이 3에 위치합니다.
 """
 ```
