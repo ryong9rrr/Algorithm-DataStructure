@@ -8,6 +8,8 @@
 
 - 한 유향그래프에서 SCC를 추출하는 대표적인 알고리즘 2가지 : **코사라주 알고리즘**, **타잔 알고리즘**
 
+- 스택과 DFS로 구현한다.
+
 # Tarjan's Algorithm
 
 모든 정점에 대해 DFS를 수행한다.
@@ -33,7 +35,10 @@
 
 ```python
 from collections import deque
-# graph info
+import sys
+input = lambda: sys.stdin.readline().rstrip()
+sys.setrecursionlimit(10**6)
+
 n = 11
 graph = {
     1: [2],
@@ -50,42 +55,39 @@ graph = {
 }
 
 stack = deque()
-d = [0] * (n+1)
-finished = [False] * (n+1)
-SCC = []
+parents = [0] * (n + 1)
+visited = [False] * (n + 1)
+result_SCC = []
 
-def dfs(x:int)->int:
-    d[x] = x
-    stack.append(x)
-
-    parent = d[x]
-    for i, v in enumerate(graph[x]):
-        node = v
-        if d[node] == 0:
+def dfs(v):
+    parents[v] = v
+    stack.append(v)
+    parent = parents[v]
+    for node in graph[v]:
+        if parents[node] == 0:
             parent = min(parent, dfs(node))
-        elif not finished[node]:
-            parent = min(parent, d[node])
+        elif not visited[node]:
+            parent = min(parent, parents[node])
 
-    if parent == d[x]:
+    if parent == parents[v]:
         scc = []
         while True:
-            t = stack.pop()
-            scc.append(t)
-            finished[t] = True
-            if t == x:
+            x = stack.pop()
+            scc.append(x)
+            visited[x] = True
+            if x == v:
                 break
-        SCC.append(scc)
-
+        result_SCC.append(scc)
     return parent
 
-for i in range(1, n+1):
-    if d[i] == 0 :
-        dfs(i)
+for v in range(1, n + 1):
+    if parents[v] == 0:
+        dfs(v)
 
 print(stack)
-print(d)
-print(finished)
-print(SCC)
+print(parents)
+print(visited)
+print(result_SCC)
 """
 deque([])
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
