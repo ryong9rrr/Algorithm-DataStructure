@@ -79,6 +79,7 @@
 ## [Math](https://github.com/ryong9rrr/cs_basic/tree/master/Math)
 
 - 등차수열
+- 순열과 조합
 
 ## [Number-Theory](https://github.com/ryong9rrr/cs_basic/tree/master/Number-Theory)
 
