@@ -7,6 +7,11 @@ class BinaryHeap {
     return this.items.length - 1;
   }
 
+  get head() {
+    if (this.items.length < 2) return undefined;
+    return this.items[1];
+  }
+
   // insert heapify
   _percolateUp() {
     let i = this.length;
