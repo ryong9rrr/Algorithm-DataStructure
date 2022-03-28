@@ -8,7 +8,6 @@ class Node {
     return [this.prior, this.value];
   }
 }
-
 class PriorityHeap {
   constructor() {
     this.items = [null];
@@ -89,17 +88,19 @@ const people = [
 const q = new PriorityHeap();
 
 for (const [prior, name] of people) {
-  q.insert(prior, name);
+  q.insert(-prior, name);
 }
 
 while (q.length) {
   console.log(q.extract()); // [ 1, 'yong' ]  [ 2, 'kim' ]  [ 3, 'lee' ]
 }
 
+// 숫자가 작은 것이 우선순위가 높도록 구현했기 때문에 .... ㅜㅜ 음수화 필요
+
 for (const [prior, name] of people) {
-  q.insert(prior, name);
+  q.insert(-prior, name);
 }
 
 while (q.head) {
-  console.log(q.extract()); // [ 1, 'yong' ]  [ 2, 'kim' ]  [ 3, 'lee' ]
+  console.log(q.extract()); // [ -3, 'lee' ]  [ -2, 'kim' ]  [ -1, 'yong' ]
 }

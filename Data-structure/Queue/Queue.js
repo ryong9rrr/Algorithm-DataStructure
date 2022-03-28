@@ -1,70 +1,65 @@
-//console.log(Object.getOwnPropertyDescriptors(Queue.prototype));
+// 간단한 큐, 메모리누수가 있음.
+class SimpleQueue {
+  constructor() {
+    this.queue = [];
+    this.front = this.rear = 0;
+  }
 
-/* shift()는 시간복잡도가 O(N)이기 때문에 밑에서 index를 통한 최적화로 재정의
-function Queue(array) {
-  this.array = array ? array : [];
+  enqueue(value) {
+    this.queue[this.rear++] = value;
+  }
+
+  dequeue() {
+    if (this.size === 0) return null;
+
+    const value = this.queue[this.front];
+    delete this.queue[this.front];
+    this.front++;
+    return value;
+  }
+
+  get size() {
+    return this.rear - this.front;
+  }
+
+  get peek() {
+    return this.size === 0 ? null : this.queue[this.front];
+  }
 }
 
-Queue.prototype.enqueue = function (ele) {
-  return this.array.push(ele);
-};
-
-Queue.prototype.dequeue = function () {
-  return this.array.shift();
-};
-*/
-
-function Queue(array) {
-  this.array = array ? array : [];
-  this.tail = array ? array.length : 0;
-  this.head = 0;
+// 연결리스트 큐, 효율 굿
+class Node {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+  }
 }
 
-Queue.prototype.enqueue = function (element) {
-  return (this.array[this.tail++] = element);
-};
+class Queue {
+  constructor() {
+    this.front = this.tail = null;
+    this.size = 0;
+  }
 
-Queue.prototype.dequeue = function () {
-  if (this.tail === this.head) return undefined;
+  get peek() {
+    return (this.front && this.front.value) || null;
+  }
 
-  let element = this.array[this.head];
-  delete this.array[this.head++];
-  return element;
-};
+  enqueue(newValue) {
+    const newNode = new Node(newValue);
+    if (!this.front) {
+      this.front = this.tail = newNode;
+    } else {
+      this.tail = this.tail.next = newNode;
+    }
+    this.size++;
+  }
 
-Queue.prototype.front = function () {
-  return this.array.length === 0 ? undefined : this.array[0];
-};
-
-// 큐 초기화
-Queue.prototype.clear = function () {
-  this.array = [];
-};
-
-Queue.prototype.size = function () {
-  return this.array.length;
-};
-
-Queue.prototype.getBuffer = function () {
-  return this.array.slice();
-};
-
-Queue.prototype.isEmpty = function () {
-  return this.array.length === 0;
-};
-
-let q = new Queue([1, 2]);
-console.log(q);
-// Queue { array: [ 1, 2 ], tail: 2, head: 0 }
-
-q.enqueue(3);
-q.enqueue(4);
-console.log(q);
-// // Queue { array: [ 1, 2, 3, 4 ], tail: 4, head: 0 }
-
-console.log(q.dequeue());
-// 1
-console.log(q.dequeue());
-// 2
-console.log(q);
-// Queue { array: [ <2 empty items>, 3, 4 ], tail: 4, head: 2 }
+  dequeue() {
+    if (!this.front) return null;
+    const extracted = this.front.value;
+    this.front = this.front.next;
+    this.size--;
+    return extracted;
+  }
+}

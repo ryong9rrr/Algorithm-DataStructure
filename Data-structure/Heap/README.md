@@ -34,7 +34,7 @@
 <img width="30%" src="img/heapify_2.jpg" />
 <img width="30%" src="img/heapify_3.jpg" />
 
-O(N)의 시간복잡도
+O(logN)의 시간복잡도
 
 ```c
 #include <stdio.h>

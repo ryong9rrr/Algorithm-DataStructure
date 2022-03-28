@@ -1,3 +1,4 @@
+/*
 // array, size의 초기값을 설정해줘야함
 const DEFAULT_SIZE = 5;
 function CircularQueue(array = [], size = DEFAULT_SIZE) {
@@ -58,38 +59,4 @@ CircularQueue.prototype.isEmpty = function () {
 CircularQueue.prototype.isFull = function () {
   return this.length == this.size;
 };
-
-let cq = new CircularQueue([1, 2, 3, 4]);
-
-cq.enqueue(5);
-cq.enqueue(6);
-console.log(cq.dequeue());
-// 1
-console.log(cq.dequeue());
-// 2
-console.log(cq);
-/*
-CircularQueue {
-  array: [ <2 empty items>, 3, 4, 5 ],
-  size: 5,
-  length: 3,
-  head: 2,
-  tail: 0
-}
 */
-
-cq.enqueue(6);
-console.log(cq);
-/*
-CircularQueue {
-  array: [ 6, <1 empty item>, 3, 4, 5 ],
-  size: 5,
-  length: 4,
-  head: 2,
-  tail: 1
-}
-*/
-console.log(cq.front());
-// 3
-console.log(cq.dataSize());
-// 4

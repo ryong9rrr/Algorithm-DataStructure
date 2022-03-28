@@ -1,44 +1,27 @@
-// console.log(Object.getOwnPropertyDescriptors(Stack.prototype));
-function Stack(array) {
-  this.array = array ? array : [];
+// 오류는 없지만 그냥 배열사용하는 것보다 시간이 오래걸림.. 코테에서는 사용 x
+class Node {
+  constructor(value, next) {
+    this.value = value;
+    this.next = next;
+  }
 }
 
-Stack.prototype.getBuffer = function () {
-  return this.array.slice();
-};
-
-Stack.prototype.isEmpty = function () {
-  return this.array.length === 0;
-};
-
-Stack.prototype.push = function (element) {
-  return this.array.push(element);
-};
-
-Stack.prototype.pop = function () {
-  return this.array.pop();
-};
-
-Stack.prototype.peek = function () {
-  return this.array[this.array.length - 1];
-};
-
-Stack.prototype.size = function () {
-  return this.array.length;
-};
-
-Stack.prototype.indexOf = function (element, position = 0) {
-  //return this.array.indexOf(element, position);
-  for (let i = position; i < this.array.length; i++) {
-    if (element === this.array[i]) return i;
+class Stack {
+  constructor() {
+    this.top = null;
+    this.size = 0;
   }
-  return -1;
-};
 
-Stack.prototype.includes = function (element) {
-  //return this.array.includes(element);
-  for (let i = 0; i < this.array.length; i++) {
-    if (element === this.array[i]) return true;
+  push(newValue) {
+    this.top = new Node(newValue, this.top);
+    this.size++;
   }
-  return false;
-};
+
+  pop() {
+    if (!this.top) return null;
+    const extracted = this.top.value;
+    this.top = this.top.next;
+    this.size--;
+    return extracted;
+  }
+}
