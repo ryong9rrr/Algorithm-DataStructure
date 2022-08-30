@@ -74,6 +74,37 @@ class SingleLinkedList {
     this.size++
   }
 
+  insertOfIndex(position, newValue) {
+    if (typeof position !== 'number' || position < 0 || position > this.size) {
+      return
+    }
+
+    const newNode = new Node(newValue)
+    if (position === 0) {
+      if (this.head === null) {
+        this.head = this.tail = newNode
+      } else {
+        newNode.next = this.head
+        this.head = newNode
+      }
+    } else if (position === this.size) {
+      this.tail.next = newNode
+      this.tail = newNode
+    } else {
+      let index = 1
+      let currentNode = this.head
+      let prevNode = this.head
+      currentNode = currentNode.next
+      while (index++ < position) {
+        prevNode = prevNode.next
+        currentNode = currentNode.next
+      }
+      newNode.next = currentNode
+      prevNode.next = newNode
+    }
+    this.size++
+  }
+
   // 존재하지 않는 값을 삭제하려해도 아무일도 일어나지 않음.
   delete(value) {
     if (this.head === null) {
@@ -103,11 +134,14 @@ const linkedList = new SingleLinkedList()
 for (const number of [1, 2, 3, 5]) {
   linkedList.add(number)
 }
-console.log(linkedList.desc()) // [1, 2, 3, 5]
-console.log(linkedList.size) // 4
+
+// 0번째 자리에 7을 넣는다.
+linkedList.insertOfIndex(0, 7)
+console.log(linkedList.desc()) // [7, 1, 2, 3, 5]
+console.log(linkedList.size) // 5
 
 // value가 1인 노드를 찾는다.
-console.log(linkedList.find(1)) // Node {next: Node { next: Node { next: [Node], value: 3 }, value: 2 }, value: 1 }
+console.log(linkedList.find(1)) // Node { next: Node { next: Node { next: [Node], value: 3 }, value: 2 }, value: 1 }
 
 // 존재하지 않는 Node를 찾으려하면 undefined를 반환한다.
 console.log(linkedList.find(6)) // undefined
@@ -120,23 +154,23 @@ console.log(linkedList.find(6)) // undefined
 
 // 노드 1 뒤에 4를 넣는다.
 linkedList.insert(linkedList.find(1), 4)
-console.log(linkedList.desc()) // [1, 4, 2, 3, 5]
+console.log(linkedList.desc()) // [7, 1, 4, 2, 3, 5]
 
 // 노드 5 뒤에 6을 넣는다.
 linkedList.insert(linkedList.find(5), 6)
-console.log(linkedList.desc()) // [1, 4, 2, 3, 5, 6]
+console.log(linkedList.desc()) // [7, 1, 4, 2, 3, 5, 6]
 
 // Node 1을 삭제한다.
 linkedList.delete(1)
-console.log(linkedList.desc()) // [4, 2, 3, 5, 6]
-console.log(linkedList.size) // 5
+console.log(linkedList.desc()) // [7, 4, 2, 3, 5, 6]
+console.log(linkedList.size) // 6
 
 // 존재하지 않는 값을 삭제하면 아무일도 일어나지 않는다.
 linkedList.delete()
-console.log(linkedList.desc()) // [4, 2, 3, 5, 6]
+console.log(linkedList.desc()) // [7, 4, 2, 3, 5, 6]
 linkedList.delete(10)
-console.log(linkedList.desc()) // [4, 2, 3, 5, 6]
-console.log(linkedList.size) // 5
+console.log(linkedList.desc()) // [7, 4, 2, 3, 5, 6]
+console.log(linkedList.size) // 6
 
 // 연결리스트를 초기화한다.
 linkedList.clear()
