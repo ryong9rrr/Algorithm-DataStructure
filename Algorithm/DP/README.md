@@ -131,3 +131,84 @@ for i in result:
 [0, 2, 3, 4, 10, 12, 13, 14, 15, 15, 15, 15, 15, 15, 15, 15]
 """
 ```
+
+# LIS(Longest Increasing Subsequence, 최장 증가 부분 수열)
+
+> [나무위키 - 최장 증가 부분 수열](https://namu.wiki/w/%EC%B5%9C%EC%9E%A5%20%EC%A6%9D%EA%B0%80%20%EB%B6%80%EB%B6%84%20%EC%88%98%EC%97%B4)
+
+> "백준 11053) 가장 긴 증가하는 부분 수열" 문제를 예시로
+
+## 간단한 알고리즘 (O(N^2) 이상)
+
+30840KB 156ms
+
+```python
+import sys
+input = lambda: sys.stdin.readline().rstrip()
+
+N = int(input())
+input_numbers = list(map(int, input().split()))
+
+def LIS_2(numbers):
+    n = len(numbers)
+    DP =  [1] * n
+    for i in range(1, n):
+        for j in range(i):
+            if numbers[i] > numbers[j]:
+                DP[i] = max(DP[i], DP[j] + 1)
+    return max(DP)
+
+print(LIS_2(input_numbers))
+```
+
+## O(N^2)의 알고리즘
+
+30840KB 112ms
+
+```python
+import sys
+input = lambda: sys.stdin.readline().rstrip()
+
+N = int(input())
+input_numbers = list(map(int, input().split()))
+
+def LIS(numbers):
+    A = [0] + numbers
+    D = [0]
+    for i in range(1, len(A)):
+        target = A[i]
+        temp = []
+        for j in range(i):
+            if target > A[j]:
+                temp.append(D[j])
+        D.append(max(temp) + 1)
+    return max(D)
+
+print(LIS(input_numbers))
+```
+
+## NlogN의 알고리즘
+
+32904KB 72ms
+
+```python
+import sys
+input = lambda: sys.stdin.readline().rstrip()
+from bisect import bisect_left
+
+N = int(input())
+input_numbers = list(map(int, input().split()))
+
+def binary_LIS(numbers):
+    DP = [numbers[0]]
+    for i in range(1, len(numbers)):
+        target = numbers[i]
+        if target > DP[-1]:
+            DP.append(target)
+        else:
+            idx = bisect_left(DP, target)
+            DP[idx] = target
+    return len(DP)
+
+print(binary_LIS(input_numbers))
+```

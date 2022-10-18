@@ -30,6 +30,8 @@
 
   - Knapsack Problem(분할이 가능하지 않는 일반적인 배낭 문제)
 
+  - LIS(Longest Increasing Subsequence, 최장 증가 부분 수열)
+
 - [Dijkstra](https://github.com/ryong9rrr/Algorithm-DataStructure/tree/master/Algorithm/Dijkstra)
 
 - [Floyed-warshall](https://github.com/ryong9rrr/Algorithm-DataStructure/tree/master/Algorithm/Floyed-warshall)
