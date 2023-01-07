@@ -1,29 +1,33 @@
-import collections
-
 class ListNode:
     def __init__(self, key=None, value=None):
         self.key = key
         self.value = value
         self.next = None
 
-class HashMap:
+class MyHashMap:
+
     def __init__(self):
         self.size = 1000
         self.table = collections.defaultdict(ListNode)
+    
+    # 간단히 해시 값을 구하는 함수
+    def get_hash(self, key: int):
+        return key % self.size
 
-    # 삽입
-    def put(self, key:int, value:int)->None:
-        index = key % self.size
+    def put(self, key: int, value: int) -> None:
+        index = self.get_hash(key)
 
-        # 인덱스에 노드가 없다면 삽입 후 종료
+        # 만약 존재하지 않는 인덱스라면
         if self.table[index].value is None:
             self.table[index] = ListNode(key, value)
             return
 
-        # 인덱스에 노드가 존재한다면 연결리스트 처리
+        # 존재한다면 값을 찾는다.
         p = self.table[index]
         while p:
             if p.key == key:
+								# 인덱스와 키가 모두 같은 이런 경우에 값을 넣는다는 것은,
+								# 새로운 값을 갱신하겠다는 것으로 본다.
                 p.value = value
                 return
             if p.next is None:
@@ -31,36 +35,45 @@ class HashMap:
             p = p.next
         p.next = ListNode(key, value)
 
-    # 조회
-    def get(self, key:int)->int:
-        index = key % self.size
+    def get(self, key: int) -> int:
+        index = self.get_hash(key)
+
+        # 존재하지 않는 인덱스라면
         if self.table[index].value is None:
             return -1
 
+        # 존재한다면 값을 찾는다.
         p = self.table[index]
         while p:
-            print(p.key, p.value)
             if p.key == key:
                 return p.value
             p = p.next
         return -1
 
-    # 삭제
-    def remove(self, key:int)->None:
-        index = key % self.size
+    def remove(self, key: int) -> None:
+        index = self.get_hash(key)
+        # 존재하지 않는 인덱스라면
         if self.table[index].value is None:
             return
 
+        # 인덱스의 첫 번째 노드라면
         p = self.table[index]
-        # 인덱스의 첫 번째 노드일 때
         if p.key == key:
             self.table[index] = ListNode() if p.next is None else p.next
             return
 
-        # 연결리스트 노드 삭제
+        # 그렇지 않다면 연결리스트에서 찾아서 삭제한다.
         prev = p
         while p:
             if p.key == key:
                 prev.next = p.next
                 return
             prev, p = p, p.next
+
+
+
+# Your MyHashMap object will be instantiated and called as such:
+# obj = MyHashMap()
+# obj.put(key,value)
+# param_2 = obj.get(key)
+# obj.remove(key)
