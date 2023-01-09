@@ -103,12 +103,26 @@ class Node:
 class Stack:
   def __init__(self):
     self.last = None
+    self._size = 0
+
+  def size(self):
+    return self._size
+
+  def top(self):
+    if not self.last:
+      return None
+    return self.last.item
 
   def push(self, item):
     self.last = Node(item, self.last)
+    self._size += 1
 
   def pop(self):
+    if not self.last:
+      return None
+
     item = self.last.item
     self.last = self.last.next
+    self._size -= 1
     return item
 ```
