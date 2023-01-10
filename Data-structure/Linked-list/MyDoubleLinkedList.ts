@@ -1,12 +1,20 @@
-class MyNode {
-  constructor(value) {
+class MyNode<T> {
+  value: T
+  prev: MyNode<T> | null
+  next: MyNode<T> | null
+
+  constructor(value: T) {
     this.value = value
     this.prev = null
     this.next = null
   }
 }
 
-class MyDoubleLinkedList {
+class MyDoubleLinkedList<T> {
+  private head: MyNode<T> | null
+  private tail: MyNode<T> | null
+  private _size: number
+
   constructor() {
     this.head = this.tail = null
     this._size = 0
@@ -16,7 +24,6 @@ class MyDoubleLinkedList {
     return this._size
   }
 
-  // 편의상 구현한 메서드
   desc(reverse = false) {
     const nodes = []
     if (!reverse) {
@@ -36,7 +43,7 @@ class MyDoubleLinkedList {
   }
 
   // value가 일치하는 첫 번째 노드를 반환합니다.
-  find(value) {
+  find(value: T) {
     let node = this.head
     while (node) {
       if (node.value === value) {
@@ -47,7 +54,7 @@ class MyDoubleLinkedList {
     return undefined
   }
 
-  add(newNode) {
+  add(newNode: MyNode<T>) {
     if (!(newNode instanceof MyNode)) {
       return
     }
@@ -62,22 +69,22 @@ class MyDoubleLinkedList {
     this._size += 1
   }
 
-  remove(targetNode) {
+  remove(targetNode: MyNode<T>) {
     if (!(targetNode instanceof MyNode)) {
       throw new Error("node's instance must be MyNode")
     }
 
     if (this.head === targetNode) {
       this.head = this.head.next
-      this.head.prev = null
+      this.head!.prev = null
     } else if (this.tail === targetNode) {
       this.tail = this.tail.prev
-      this.tail.next = null
+      this.tail!.next = null
     } else {
       const prevNode = targetNode.prev
       const nextNode = targetNode.next
-      prevNode.next = nextNode
-      nextNode.prev = prevNode
+      prevNode!.next = nextNode
+      nextNode!.prev = prevNode
     }
     this._size -= 1
   }
@@ -86,21 +93,23 @@ class MyDoubleLinkedList {
   // 가장 최근에 삭제한 노드를 인자로 받아 복원한다.
   // 버그가 있는 상황이 생길 수도 있지만 문제에서 버그가 일어날 상황은 없다고 가정했기 때문에
   // 예외처리를 하지 않은 메서드임. 따라서 이 메서드는 테스트에서 제외한다.
-  restore(targetNode) {
+  restore(targetNode: MyNode<T>) {
     if (!(targetNode instanceof MyNode)) {
       return
     }
     if (targetNode.prev === null) {
-      this.head.prev = targetNode
+      this.head!.prev = targetNode
       this.head = targetNode
     } else if (targetNode.next === null) {
-      this.tail.next = targetNode
+      this.tail!.next = targetNode
       this.tail = targetNode
     } else {
       const node = targetNode.prev
-      node.next.prev = targetNode
+      node.next!.prev = targetNode
       node.next = targetNode
     }
     this._size += 1
   }
 }
+
+export { MyNode, MyDoubleLinkedList }

@@ -1,11 +1,11 @@
-class Node {
+class MyNode {
   constructor(value) {
     this.value = value
     this.next = null
   }
 }
 
-class Queue {
+class MyQueue {
   constructor() {
     this.front = this.tail = null
     this.size = 0
