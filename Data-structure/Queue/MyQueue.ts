@@ -13,9 +13,13 @@ class MyQueue<T> {
   private tail: MyNode<T> | null
   private _size: number
 
-  constructor() {
+  constructor(array = []) {
     this.front = this.tail = null
     this._size = 0
+
+    for (const el of array) {
+      this.enqueue(el)
+    }
   }
 
   // 편의상 구현한 메서드

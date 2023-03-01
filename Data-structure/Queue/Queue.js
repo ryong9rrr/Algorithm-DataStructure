@@ -6,9 +6,13 @@ class MyNode {
 }
 
 class MyQueue {
-  constructor() {
+  constructor(array = []) {
     this.front = this.tail = null
     this.size = 0
+
+    for (const el of array) {
+      this.enqueue(el)
+    }
   }
 
   get peek() {
@@ -26,7 +30,7 @@ class MyQueue {
   }
 
   enqueue(value) {
-    const node = new Node(value)
+    const node = new MyNode(value)
     if (!this.front) {
       this.front = this.tail = node
     } else {

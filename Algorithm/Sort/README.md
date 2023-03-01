@@ -10,6 +10,10 @@
 
 ---
 
+<img src="https://leetcode.com/problems/sort-an-array/Figures/912/Slide1.PNG" />
+
+(출처 : 리트코드 - [https://leetcode.com/problems/sort-an-array/editorial/](https://leetcode.com/problems/sort-an-array/editorial/) )
+
 일반적으로 알고리즘을 공부할 때 가장 먼저 풀어보는 문제, 여러가지 방법(알고리즘)들이 있고 효율성 차이가 극명하게 보이기 때문.
 
 > 다음 숫자들을 오름차순으로 정렬하시오... </br>`1 10 5 8 7 6 4 3 2 9`
@@ -335,6 +339,10 @@ print(numbers)
 
 <strong>Big O Notation : N \* log(N)</strong>
 
+- 최선, 평균 : `O(nlogn)`
+
+- 최악 : `O(n^2)`
+
 계속해서 절반으로 쪼개기 때문에 "일반적인 경우" 효율적인 알고리즘이지만, 최악의 경우, 예를 들어 데이터가 "거의 정렬된 상태"라면 N\*N 의 시간복잡도를 보여준다.("거의 정렬된 상태"에서는 삽입정렬이 더 뛰어날 수 있다.)
 
 ---
@@ -424,6 +432,10 @@ int main(void){
 
 <strong>Big O Notation : N \* log(N)</strong>
 
+- 최선, 평균, 최악 : `O(nlogn)`
+
+- 공간복잡도 : `O(n)`
+
 퀵 정렬의 경우 최악에는 N*N의 시간복잡도를 가질 수 있지만 병합정렬은 무조건 반으로 쪼갠 후 연산을 수행하기 때문에 N * log(N)의 시간복잡도를 보장할 수 있다. 하지만 기존의 데이터를 담을 추가적인 메모리 공간을 필요로 하기 때문에 메모리의 낭비가 있을 수 있다.
 
 ---
@@ -502,6 +514,10 @@ int main(void){
 ```
 
 <strong>Big O Notation : O(N \* log(N)) </strong>
+
+- 최선, 평균, 최악 : `O(nlogn)`
+
+- 공간복잡도 : `O(logn)`
 
 배열을 힙 구조로 만드는 시간복잡도 + 힙 정렬을 하는 시간복잡도 = N _ log(N) + N _ log(N) = N \* log(N)
 
