@@ -2,6 +2,10 @@
 
 - 어떤 문자열에서 특정한 문자열을 찾는 알고리즘
 
+## 매우 다양한 문자열 매칭 알고리즘을 설명해주는 웹사이트
+
+[http://www-igm.univ-mlv.fr/~lecroq/string/index.html](http://www-igm.univ-mlv.fr/~lecroq/string/index.html)
+
 # 브루트포스로 찾기
 
 - 가장 단순한 방식으로 특정한 문자열의 인덱스를 하나씩 늘리면서 찾는다.

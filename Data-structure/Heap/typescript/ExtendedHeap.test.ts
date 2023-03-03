@@ -1,4 +1,4 @@
-import MaxHeap from "./MaxHeap"
+import { MaxHeap } from "./ExtendedHeap"
 
 describe("MaxHeap test", () => {
   test("add()", () => {
@@ -13,10 +13,10 @@ describe("MaxHeap test", () => {
     const heap = new MaxHeap()
     heap.add(1)
     expect(heap.size).toEqual(1)
-    expect(heap.extractMax()).toEqual(1)
+    expect(heap.extract()).toEqual(1)
     expect(heap.size).toEqual(0)
     expect(() => {
-      heap.extractMax()
+      heap.extract()
     }).toThrow("empty")
   })
 
@@ -26,7 +26,7 @@ describe("MaxHeap test", () => {
     const heap = new MaxHeap()
     numbers.forEach((n) => heap.add(n))
     while (heap.size > 0) {
-      expect(heap.extractMax()).toEqual(numbers.pop())
+      expect(heap.extract()).toEqual(numbers.pop())
     }
   })
 })
